@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
 class QuestionWidget extends StatelessWidget {
-  @override
+  final answer;
+  final Color color;
+
+  QuestionWidget(this.answer, this.color);
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
           Container(
-              height: 30,
+              height: 50,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.blueGrey),
-              child: Center(child: Text("Question number"))),
+              decoration: BoxDecoration(color: color),
+              child: Center(
+                  child: Text(
+                answer,
+                style: TextStyle(fontSize: 20),
+              ))),
           SizedBox(
             height: 5,
           ),

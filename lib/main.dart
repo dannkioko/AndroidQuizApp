@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/screens/welcome/welcomescreen.dart';
+import 'package:quizapp/screens/question/questionscreen.dart';
+import 'package:quizapp/screens/home/homescreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
