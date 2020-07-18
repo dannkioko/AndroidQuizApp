@@ -44,7 +44,19 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+// #80b4ff
+// #ff7b79
+      appBar: AppBar(
+        title: Text(
+          "Quiz App",
+          style: TextStyle(color: Colors.black),
+        ),
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context)),
+      ),
       body: Container(
         child: Column(
           children: <Widget>[

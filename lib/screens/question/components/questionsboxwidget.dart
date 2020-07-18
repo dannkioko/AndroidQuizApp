@@ -17,27 +17,31 @@ class QuestionBoxWidget extends StatefulWidget {
 class _QuestionBoxWidgetState extends State<QuestionBoxWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 400,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List<Widget>.generate(
-              widget.answers.length,
-              (index) => GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.selected = index;
-                    });
-                    if (widget.correctAnswer == widget.answers[index]) {
-                      widget.callBack(true, widget.selected);
-                    } else {
-                      widget.callBack(false, widget.selected);
-                    }
-                  },
-                  child: index == widget.selected
-                      ? QuestionWidget(widget.answers[index], Colors.green)
-                      : QuestionWidget(
-                          widget.answers[index], Colors.blueGrey)))),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Container(
+        width: 400,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(
+                widget.answers.length,
+                (index) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.selected = index;
+                      });
+                      if (widget.correctAnswer == widget.answers[index]) {
+                        widget.callBack(true, widget.selected);
+                      } else {
+                        widget.callBack(false, widget.selected);
+                      }
+                    },
+                    child: index == widget.selected
+                        ? QuestionWidget(widget.answers[index],
+                            Color.fromRGBO(255, 123, 121, 1))
+                        : QuestionWidget(
+                            widget.answers[index], Colors.blueGrey)))),
+      ),
     );
   }
 }

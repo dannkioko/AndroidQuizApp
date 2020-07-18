@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Color.fromRGBO(255, 123, 121, 1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                               })));
                 },
                 child: Text("Load Quiz"),
-                color: Colors.blueAccent,
+                color: Color.fromRGBO(97, 149, 237, 1),
               ),
             )
           ],
