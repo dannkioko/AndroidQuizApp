@@ -41,6 +41,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
     });
   }
 
+  void _showToast(BuildContext context) {
+    final scaffold = Scaffold.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text('Select an answer'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,29 +95,37 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                       QuestionBoxWidget(
                           answers, correctAnswer, callBack, selectedIndex),
-                      FlatButton(
-                          onPressed: () {
-                            print('pressed');
-                            setState(() {
-                              if (currentSelection) {
-                                correct++;
-                              }
-                              selectedIndex = null;
-                              currentSelection = false;
-                              questionNumber++;
-                              correctAnswer = widget.questions[questionNumber]
-                                  ['correct_answer'];
-                              incorrectAnswers =
-                                  widget.questions[questionNumber]
-                                      ['incorrect_answers'];
+                      Builder(
+                        builder: (context) {
+                          return FlatButton(
+                              onPressed: () {
+                                if (selectedIndex != null) {
+                                  setState(() {
+                                    if (currentSelection) {
+                                      correct++;
+                                    }
+                                    selectedIndex = null;
+                                    currentSelection = false;
+                                    questionNumber++;
+                                    correctAnswer =
+                                        widget.questions[questionNumber]
+                                            ['correct_answer'];
+                                    incorrectAnswers =
+                                        widget.questions[questionNumber]
+                                            ['incorrect_answers'];
 
-                              answers = List.from(incorrectAnswers);
-                              answers.add(correctAnswer);
-                              answers.shuffle();
-                            });
-                          },
-                          color: Colors.amber,
-                          child: Text("Submit"))
+                                    answers = List.from(incorrectAnswers);
+                                    answers.add(correctAnswer);
+                                    answers.shuffle();
+                                  });
+                                } else {
+                                  _showToast(context);
+                                }
+                              },
+                              color: Colors.amber,
+                              child: Text("Submit"));
+                        },
+                      )
                     ],
                   )),
                 ),

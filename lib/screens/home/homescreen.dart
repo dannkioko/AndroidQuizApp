@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                                 return Scaffold(
                                   body: Center(
                                     child: Container(
-                                      child: Text("loading"),
+                                      child: Text("generating questions"),
                                     ),
                                   ),
                                 );
