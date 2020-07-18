@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<Questions> fetchQuestions() async {
-  String uri = 'https://opentdb.com/api.php?amount=5&category=9';
+  String uri = 'https://opentdb.com/api.php?amount=20&category=9';
   final response = await http.get(uri, headers: {});
   if (response.statusCode == 200) {
     return Questions.fromJson(json.decode(response.body));

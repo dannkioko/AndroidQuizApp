@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/screens/answers/answerscreen.dart';
 import 'package:quizapp/screens/home/homescreen.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -83,7 +84,13 @@ class ResultsScreen extends StatelessWidget {
                         color: Colors.amber,
                       ),
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AnswerScreen(questions)));
+                        },
                         child: Text("View Answers"),
                         color: Colors.amber,
                       ),

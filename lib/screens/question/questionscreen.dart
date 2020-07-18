@@ -55,8 +55,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
   Widget build(BuildContext context) {
     print(correctAnswer);
     return Scaffold(
-// #80b4ff
-// #ff7b79
       appBar: AppBar(
         title: Text(
           "Quiz App",
@@ -93,6 +91,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                     style: TextStyle(
                                       fontSize: 30,
                                     ),
+                                    textAlign: TextAlign.center,
                                   )
                                 : null,
                           ),
@@ -117,8 +116,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  ResultsScreen(
-                                                      correct, outOf)));
+                                                  ResultsScreen(correct, outOf,
+                                                      widget.questions)));
                                     } else {
                                       correctAnswer =
                                           widget.questions[questionNumber]
