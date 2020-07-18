@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/screens/question/components/questionsboxwidget.dart';
 import 'package:quizapp/screens/question/components/scorebox.dart';
+import 'package:quizapp/screens/results/resuts_screen.dart';
 
 class QuestionScreen extends StatefulWidget {
   final questions;
@@ -15,7 +16,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   int questionNumber = 0;
   var incorrectAnswers, correctAnswer, selectedIndex;
   int correct = 0;
-  int outOf = 20;
+  int outOf = 5;
   var currentSelection = false;
   List<dynamic> answers;
 
@@ -52,6 +53,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(correctAnswer);
     return Scaffold(
 // #80b4ff
 // #ff7b79
@@ -84,12 +86,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              widget.questions[questionNumber]['question'],
-                              style: TextStyle(
-                                fontSize: 30,
-                              ),
-                            ),
+                            child: questionNumber < outOf
+                                ? Text(
+                                    widget.questions[questionNumber]
+                                        ['question'],
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                    ),
+                                  )
+                                : null,
                           ),
                         ),
                       ),
@@ -107,16 +112,25 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                     selectedIndex = null;
                                     currentSelection = false;
                                     questionNumber++;
-                                    correctAnswer =
-                                        widget.questions[questionNumber]
-                                            ['correct_answer'];
-                                    incorrectAnswers =
-                                        widget.questions[questionNumber]
-                                            ['incorrect_answers'];
+                                    if (questionNumber == outOf) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ResultsScreen(
+                                                      correct, outOf)));
+                                    } else {
+                                      correctAnswer =
+                                          widget.questions[questionNumber]
+                                              ['correct_answer'];
+                                      incorrectAnswers =
+                                          widget.questions[questionNumber]
+                                              ['incorrect_answers'];
 
-                                    answers = List.from(incorrectAnswers);
-                                    answers.add(correctAnswer);
-                                    answers.shuffle();
+                                      answers = List.from(incorrectAnswers);
+                                      answers.add(correctAnswer);
+                                      answers.shuffle();
+                                    }
                                   });
                                 } else {
                                   _showToast(context);
