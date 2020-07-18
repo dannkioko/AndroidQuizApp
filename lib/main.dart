@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/screens/question/questionscreen.dart';
 import 'package:quizapp/screens/home/homescreen.dart';
 
 void main() => runApp(MyApp());
